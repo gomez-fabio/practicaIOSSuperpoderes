@@ -48,27 +48,27 @@ class FeaturedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // activity when loading instead of scrollView
-        self.scrollView.isHidden = true
-        self.activityIndicator.startAnimating()
 
 		searchNavigator.installSearch(viewController: self)
         presenter.view = self
 		presenter.didLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // scrollView when view did Appear
-        self.activityIndicator.stopAnimating()
-        self.activityIndicator.isHidden = true
-        self.scrollView.isHidden = false
-    }
 }
 
 extension FeaturedViewController: FeaturedView {
-	func setShowsHeaderTitle(_ title: String) {
+    
+    func setLoading(_ loading: Bool){
+        if loading {
+            scrollView.isHidden = true
+            activityIndicator.startAnimating()
+        } else {
+            scrollView.isHidden = false
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    func setShowsHeaderTitle(_ title: String) {
 		showsLabel.text = title
 	}
 

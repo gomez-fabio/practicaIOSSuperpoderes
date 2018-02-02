@@ -13,8 +13,17 @@ extension DetailHeader {
         title = person.name!
         posterPath = person.profilePath
         
-        backdropPath = person.taggedImages?.results[0].filePath
+        var imagen: String?
         
+        if let results = person.taggedImages?.results.count{
+            if (results > 0) {
+                imagen = person.taggedImages?.results[0].filePath
+            } else {
+                imagen = nil
+            }
+        }
+        
+        backdropPath = imagen
         let birthday = (person.birthday.flatMap{ dateFormatter.date(from: $0) }?.year).map { String($0) }
         let deathday = (person.deathday.flatMap{ dateFormatter.date(from: $0) }?.year).map { String($0) }
         

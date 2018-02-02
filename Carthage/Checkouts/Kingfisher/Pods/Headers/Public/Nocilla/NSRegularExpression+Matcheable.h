@@ -1,1 +1,6 @@
-../../../Nocilla/Nocilla/Matchers/NSRegularExpression+Matcheable.h
+#import <Foundation/Foundation.h>
+#import "LSMatcheable.h"
+
+@interface NSRegularExpression (Matcheable) <LSMatcheable>
+
+@end

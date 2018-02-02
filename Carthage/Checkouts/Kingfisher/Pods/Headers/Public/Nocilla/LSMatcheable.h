@@ -1,1 +1,9 @@
-../../../Nocilla/Nocilla/Matchers/LSMatcheable.h
+#import <Foundation/Foundation.h>
+
+@class LSMatcher;
+
+@protocol LSMatcheable <NSObject>
+
+- (LSMatcher *)matcher;
+
+@end

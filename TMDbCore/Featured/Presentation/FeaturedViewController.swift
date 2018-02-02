@@ -18,7 +18,9 @@ class FeaturedViewController: UIViewController {
 	@IBOutlet private var showsStackView: UIStackView!
 	@IBOutlet private var moviesLabel: UILabel!
 	@IBOutlet private var moviesStackView: UIStackView!
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
 	// MARK: - Properties
 
 	private let presenter: FeaturedPresenter
@@ -46,10 +48,22 @@ class FeaturedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // activity when loading instead of scrollView
+        self.scrollView.isHidden = true
+        self.activityIndicator.startAnimating()
 
 		searchNavigator.installSearch(viewController: self)
         presenter.view = self
 		presenter.didLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // scrollView when view did Appear
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+        self.scrollView.isHidden = false
     }
 }
 
